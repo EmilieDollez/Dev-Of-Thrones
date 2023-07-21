@@ -1,21 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import {Routes, Route} from "react-router-dom";
 import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header';
 import Posts from './components/Posts/Posts';
+import Post from './components/Post/Post.jsx';
 
 import './styles/index.css'
 
 export default function App() {
 
 const [zenMode, setZenMode] = useState(false)
-const [ApiData, setApiData] = useState([])
+const [Articles, setArticles] = useState([])
 const [Categories, setCategories] = useState([])
-const [loading, setLoading] = useState(true)
+const [Loading, setLoading] = useState(true)
 
 const fetchArticles = async (url) => {
   const res = await fetch(url);
   const result = await res.json();
-  setApiData(result)
+  setArticles(result)
 }
 
 const fetchCategories = async (url) => {
@@ -35,21 +37,44 @@ useEffect(() => {
 
   return (
     <div className="app">
+        <Header
+              categories={Categories}
+              zenMode={zenMode}
+              setZenMode={setZenMode}
+            />
+        <Routes>
+        
+          <Route path="/" element={
+            <Posts 
+                loading={Loading}
+                zenMode={zenMode}
+                articles={Articles}
+                setArticles={setArticles}
+                categories={Categories} />}
+          />
+            <Route
+            path="/posts/:categoryName" 
+            element={
+              <Posts
+                loading={Loading}
+                zenMode={zenMode}
+                articles={Articles}
+                setArticles={setArticles}
+                categories={Categories}
+                 />
+            }/>
 
-      <Header
-        categories={Categories}
-        zenMode={zenMode}
-        setZenMode={setZenMode}
-      />
-
-      <Posts
-        loading={loading}
-        zenMode={zenMode}
-        ApiData={ApiData}
-      />
-
+            <Route
+            path="/post/:id" 
+            element={
+              <Post
+                articles={Articles}
+                setArticles={setArticles}
+                setCategories={setCategories}
+                categories={Categories} />
+            }/>
+      </Routes>
       <Footer />
-
     </div>
   );
 }

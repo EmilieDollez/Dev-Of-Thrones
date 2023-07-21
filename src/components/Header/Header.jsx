@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Posts from "../Posts/Posts";
 
 function Header({categories, zenMode, setZenMode}) {
@@ -9,19 +10,20 @@ const handleClick = () => {
       setZenMode(true)
     }
   }
-  
+
   return (
     <header className="border-b-2 border-solid color-alt p-6 text-center">
       <nav className="flex justify-center max-[600px]:flex-wrap">
-        <a 
-          className="cursor-pointer inline-block h-6 leading-6 color-darkest mx-4 no-underline text-headerM hover:underline hover:text-primary" href="#header">  
+        <Link to="/" 
+          className="cursor-pointer inline-block h-6 leading-6 color-darkest mx-4 no-underline text-headerM hover:underline hover:text-primary">  
             Accueil
-        </a>
+        </Link>
         {categories.map((category) => (
-          <a key={category.id} 
-            className="menu-link cursor-pointer inline-block h-6 leading-6 color-darkest mx-4 no-underline text-headerM hover:text-primary hover:underline" href="#header">
+          <Link to={`/posts/${category.slug}`} key={category.id} 
+            className="menu-link cursor-pointer inline-block h-6 leading-6 color-darkest mx-4 no-underline text-headerM hover:text-primary hover:underline"
+          >
               {category.name}
-          </a>
+          </Link>
         ))}
         <button 
           className="h-6 bg-primary text-lightest mx-4 px-4 text-headerM relative w-48 overflow-hidden rounded-lg group"
