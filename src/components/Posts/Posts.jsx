@@ -22,6 +22,7 @@ function Posts({ loading, zenMode, articles, categories}) {
             .map((article) => (
                   <Post
                     key={article.id}
+                    id={article.id}
                     title={article.title}
                     excerpt={article.excerpt}
                     category={article.category.slug}
@@ -35,6 +36,7 @@ function Posts({ loading, zenMode, articles, categories}) {
             .map((article) => (
                   <Post
                     key={article.id}
+                    id={article.id}
                     title={article.title}
                     excerpt={article.excerpt}
                     category={article.category.slug}

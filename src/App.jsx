@@ -4,6 +4,7 @@ import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header';
 import Posts from './components/Posts/Posts';
 import Post from './components/Post/Post.jsx';
+import PostDetails from './components/PostDetails/PostDetails.jsx';
 
 import './styles/index.css'
 
@@ -25,6 +26,7 @@ const fetchCategories = async (url) => {
   const result = await res.json();
   setCategories(result)
 }
+
 
 useEffect(() => {
   setLoading(true)
@@ -65,13 +67,12 @@ useEffect(() => {
             }/>
 
             <Route
-            path="/post/:id" 
+            path="/post/:postId" 
             element={
-              <Post
+              <PostDetails
                 articles={Articles}
-                setArticles={setArticles}
-                setCategories={setCategories}
-                categories={Categories} />
+                zenMode={zenMode}
+              />
             }/>
       </Routes>
       <Footer />
