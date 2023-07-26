@@ -26,6 +26,9 @@ Il est temps à présent d'ajouter une première fonctionnalité !
 
 Tu vois ce gros bouton `Activer le mode zen` ?
 
+API BLOG :
+https://techcrunch.com/wp-json/wp/v2/posts?per_page=100&context=embed
+
 Pour le moment il ne fait rien. Il faut qu'au clic, l'affichage change. On veut voir les articles en plus gros et sur une seule colonne.
 Si on re-clique, on repasse en affichage sur 2 colonnes et ainsi de suite.
 

@@ -30,9 +30,25 @@ export default {
       },
       lineHeight: {
         'postsLeading':'4.5rem',
-      }
+      },
+      screens: {
+        'mobile': '320px',
+        //=> @media (min-width: 320px) { ... }
+
+        'bigMobile':'425px',
+        //=> @media (min-width: 425px) { ... }
+        
+        'tablet': '640px',
+        // => @media (min-width: 640px) { ... }
+  
+        'laptop': '1024px',
+        // => @media (min-width: 1024px) { ... }
+  
+        'desktop': '1280px',
+        // => @media (min-width: 1280px) { ... }
+      },
   },
 },
-  plugins: [],
+  plugins: ['@tailwindcss/line-clamp'],
 }
 

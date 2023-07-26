@@ -5,18 +5,15 @@ import { useParams } from "react-router-dom";
 function Posts({ loading, zenMode, articles, categories}) {
 
   const params = useParams()
-  console.log('valeur de params', params)
+  const article = articles.find(article => article.id === Number(params.postId))
+  // console.log(article)
   
   return (
-    <main className="posts mb-6 mx-auto max-mw-800">
-      <h1 className="posts-title text-primary font-oswald text-postsXL font-medium leading-postsLeading mb-2 text-center uppercase">
-        Dev Of Thrones
-      </h1>
+    <main className="posts w-full px-12 mb-20">
       {loading ? (
         <Spinner />
       ) : (  
-          <div className={`posts-list  ${!zenMode ? "flex flex-wrap" : ""}`}>
-
+          <div className={`posts-list ${zenMode ? "" : "flex flex-wrap gap-2"}`}>
             {params.categoryName && articles
             .filter((article) => article.category.slug === params.categoryName)
             .map((article) => (
@@ -45,6 +42,33 @@ function Posts({ loading, zenMode, articles, categories}) {
                   />
                 ))
             }
+
+            {/* {article && articles.map((article) =>
+                    <Post
+                      key={article.id}
+                      id={article.id}
+                      title={article.title}
+                      excerpt={article.excerpt}
+                      category={article.category.slug}
+                      zenMode={zenMode}
+                      categories={categories}
+                    />
+                    )  
+            }  */}
+
+            {/* {!params.categoryName && !params.postId && articles
+              .map((article) => (
+                    <Post
+                      key={article.id}
+                      id={article.id}
+                      title={article.title}
+                      excerpt={article.excerpt}
+                      category={article.category.slug}
+                      zenMode={zenMode}
+                      categories={categories}
+                    />
+                  ))
+            } */}
           </div>
         )}
       </main>

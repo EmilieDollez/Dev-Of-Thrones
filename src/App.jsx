@@ -3,7 +3,6 @@ import {Routes, Route} from "react-router-dom";
 import Footer from './components/Footer/Footer.jsx';
 import Header from './components/Header/Header';
 import Posts from './components/Posts/Posts';
-import Post from './components/Post/Post.jsx';
 import PostDetails from './components/PostDetails/PostDetails.jsx';
 
 import './styles/index.css'
@@ -38,7 +37,7 @@ useEffect(() => {
 }, [])
 
   return (
-    <div className="app">
+    <div className={`m-auto flex flex-col items-center max-w-[1440px] ${zenMode ? "bg-gray-950" : "bg-white"}`}>
         <Header
               categories={Categories}
               zenMode={zenMode}
@@ -63,7 +62,7 @@ useEffect(() => {
                 articles={Articles}
                 setArticles={setArticles}
                 categories={Categories}
-                 />
+                />
             }/>
 
             <Route
