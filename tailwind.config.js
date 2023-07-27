@@ -18,6 +18,7 @@ export default {
         oswald: ['Oswald'],
       },
       fontSize: {
+        'tag': '10px',
         'headerM': '0.8125em',
         'postM': '0.8125em',
         'postXL': '1.3125em',

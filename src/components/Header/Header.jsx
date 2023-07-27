@@ -40,7 +40,7 @@ const handleClick = () => {
           </button>
         </div>
       <h1 className="posts-title mx-12 text-primary font-oswald text-postsXL font-medium leading-postsLeading mb-2 text-center uppercase border-b-2 border-t-2 border-solid color-alt">
-        Dev Of Thrones
+        Geek Ludik
       </h1>
     </header>
     

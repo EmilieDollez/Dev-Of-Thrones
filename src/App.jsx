@@ -10,9 +10,11 @@ import './styles/index.css'
 export default function App() {
 
 const [zenMode, setZenMode] = useState(false)
-const [Articles, setArticles] = useState([])
-const [Categories, setCategories] = useState([])
-const [Loading, setLoading] = useState(true)
+const [articles, setArticles] = useState([])
+const [categories, setCategories] = useState([])
+const [loading, setLoading] = useState(true)
+const [myArticles, setMyArticles] = useState([])
+
 
 const fetchArticles = async (url) => {
   const res = await fetch(url);
@@ -23,23 +25,30 @@ const fetchArticles = async (url) => {
 const fetchCategories = async (url) => {
   const res = await fetch(url);
   const result = await res.json();
-  setCategories(result)
+  setCategories(result);
 }
 
+const fetchMyArticles = async (url) => {
+  const res = await fetch(url);
+  const result = await res.json();
+  setMyArticles(result);
+}
 
 useEffect(() => {
   setLoading(true)
+  fetchMyArticles("http://localhost:3000/posts")
   fetchArticles("https://oblog-react.vercel.app/api/posts")
   fetchCategories("https://oblog-react.vercel.app/api/categories")
   setTimeout(() => {
     setLoading(false)
-  }, 3500)
+  }, 3000)
 }, [])
 
+console.log('données initiales APP JSX',myArticles)
   return (
     <div className={`m-auto flex flex-col items-center max-w-[1440px] ${zenMode ? "bg-gray-950" : "bg-white"}`}>
         <Header
-              categories={Categories}
+              categories={categories}
               zenMode={zenMode}
               setZenMode={setZenMode}
             />
@@ -47,21 +56,22 @@ useEffect(() => {
         
           <Route path="/" element={
             <Posts 
-                loading={Loading}
+                loading={loading}
                 zenMode={zenMode}
-                articles={Articles}
+                articles={articles}
                 setArticles={setArticles}
-                categories={Categories} />}
+                categories={categories}
+                myArticles={myArticles} />}
           />
             <Route
             path="/posts/:categoryName" 
             element={
               <Posts
-                loading={Loading}
+                loading={loading}
                 zenMode={zenMode}
-                articles={Articles}
+                articles={articles}
                 setArticles={setArticles}
-                categories={Categories}
+                myArticles={myArticles}
                 />
             }/>
 
@@ -69,8 +79,10 @@ useEffect(() => {
             path="/post/:postId" 
             element={
               <PostDetails
-                articles={Articles}
+                articles={articles}
                 zenMode={zenMode}
+                myArticles={myArticles}
+                setMyArticles={setMyArticles}
               />
             }/>
       </Routes>
