@@ -35,16 +35,18 @@ const fetchMyArticles = async (url) => {
 }
 
 useEffect(() => {
-  setLoading(true)
   fetchMyArticles("http://localhost:3000/posts")
+  setLoading(true)
   fetchArticles("https://oblog-react.vercel.app/api/posts")
   fetchCategories("https://oblog-react.vercel.app/api/categories")
   setTimeout(() => {
     setLoading(false)
   }, 3000)
+
 }, [])
 
-console.log('données initiales APP JSX',myArticles)
+console.log ('mesarticles fetch initial', myArticles)
+
   return (
     <div className={`m-auto flex flex-col items-center max-w-[1440px] ${zenMode ? "bg-gray-950" : "bg-white"}`}>
         <Header
@@ -79,10 +81,10 @@ console.log('données initiales APP JSX',myArticles)
             path="/post/:postId" 
             element={
               <PostDetails
+                loading={loading}
                 articles={articles}
                 zenMode={zenMode}
                 myArticles={myArticles}
-                setMyArticles={setMyArticles}
               />
             }/>
       </Routes>

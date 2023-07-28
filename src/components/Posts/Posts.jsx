@@ -3,9 +3,9 @@ import Spinner from "../Spinner/Spinner";
 import { useParams } from "react-router-dom";
 
 function Posts({ loading, zenMode, articles, categories, myArticles}) {
-  console.log('type data', typeof myArticles.data)
-  console.log('test data', myArticles)
-  console.log('test data2', myArticles.data)
+  // console.log('type data', typeof myArticles.data)
+  // console.log('test data', myArticles)
+  // console.log('test data2', myArticles.data)
 
   const params = useParams()
   
